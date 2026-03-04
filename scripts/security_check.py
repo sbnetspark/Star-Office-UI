@@ -86,6 +86,8 @@ def main() -> int:
     max_upload_mb_raw = (os.getenv("STAR_OFFICE_MAX_UPLOAD_MB") or "20").strip()
     write_rl_raw = (os.getenv("STAR_OFFICE_WRITE_RATE_LIMIT") or "60,60").strip()
     asset_read_auth_enabled = (os.getenv("STAR_OFFICE_ASSET_READ_AUTH_ENABLED") or "").strip().lower() in {"1", "true", "yes", "on"}
+    gemini_timeout_raw = (os.getenv("STAR_OFFICE_GEMINI_TIMEOUT_SECONDS") or "240").strip()
+    gemini_prompt_max_raw = (os.getenv("STAR_OFFICE_GEMINI_PROMPT_MAX_CHARS") or "1200").strip()
 
     if in_prod:
         if not is_strong_secret(secret):
@@ -122,6 +124,24 @@ def main() -> int:
 
     if in_prod and not asset_read_auth_enabled:
         warnings.append("STAR_OFFICE_ASSET_READ_AUTH_ENABLED is OFF in production (asset inventory endpoints are publicly readable)")
+
+    try:
+        gemini_timeout = int(gemini_timeout_raw)
+        if gemini_timeout < 30:
+            warnings.append("STAR_OFFICE_GEMINI_TIMEOUT_SECONDS is very low (<30), image generation may fail frequently")
+        if gemini_timeout > 1800:
+            warnings.append("STAR_OFFICE_GEMINI_TIMEOUT_SECONDS is very high (>1800), hung jobs may hold workers too long")
+    except Exception:
+        failures.append("STAR_OFFICE_GEMINI_TIMEOUT_SECONDS is invalid (must be integer)")
+
+    try:
+        gemini_prompt_max = int(gemini_prompt_max_raw)
+        if gemini_prompt_max < 100:
+            warnings.append("STAR_OFFICE_GEMINI_PROMPT_MAX_CHARS is very low (<100), prompts may be over-truncated")
+        if gemini_prompt_max > 10000:
+            warnings.append("STAR_OFFICE_GEMINI_PROMPT_MAX_CHARS is very high (>10000), consider lowering")
+    except Exception:
+        failures.append("STAR_OFFICE_GEMINI_PROMPT_MAX_CHARS is invalid (must be integer)")
 
     tracked = tracked_files()
     risky_tracked = [

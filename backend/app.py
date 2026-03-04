@@ -127,6 +127,11 @@ _rate_lock = threading.Lock()
 # Optional read hardening for asset inventory/template endpoints (default OFF for compatibility)
 ASSET_READ_AUTH_ENABLED = feature_enabled("STAR_OFFICE_ASSET_READ_AUTH_ENABLED", default=False)
 
+# Background generation guard (non-breaking): avoid concurrent heavy generation jobs.
+BG_GENERATE_LOCK = threading.Lock()
+GEMINI_SUBPROCESS_TIMEOUT_SECONDS = int(os.getenv("STAR_OFFICE_GEMINI_TIMEOUT_SECONDS", "240"))
+GEMINI_PROMPT_MAX_CHARS = int(os.getenv("STAR_OFFICE_GEMINI_PROMPT_MAX_CHARS", "1200"))
+
 if is_production_mode():
     hardening_errors = []
     if not is_strong_secret(str(app.secret_key)):
@@ -795,7 +800,13 @@ def _generate_rpg_background_to_webp(out_webp_path: str, width: int = 1280, heig
     env["GEMINI_API_KEY"] = api_key
 
     def _run_cmd(cmd_args):
-        return subprocess.run(cmd_args, capture_output=True, text=True, env=env, timeout=240)
+        return subprocess.run(
+            cmd_args,
+            capture_output=True,
+            text=True,
+            env=env,
+            timeout=max(30, GEMINI_SUBPROCESS_TIMEOUT_SECONDS),
+        )
 
     def _is_model_unavailable_error(text: str) -> bool:
         low = (text or "").strip().lower()
@@ -1428,9 +1439,13 @@ def assets_generate_rpg_background():
     guard = _require_asset_editor_auth()
     if guard:
         return guard
+    if not BG_GENERATE_LOCK.acquire(blocking=False):
+        return jsonify({"ok": False, "code": "GEN_BUSY", "msg": "已有生成任务进行中，请稍后重试"}), 429
     try:
         req = request.get_json(silent=True) or {}
         custom_prompt = (req.get("prompt") or "").strip() if isinstance(req, dict) else ""
+        if len(custom_prompt) > GEMINI_PROMPT_MAX_CHARS:
+            custom_prompt = custom_prompt[:GEMINI_PROMPT_MAX_CHARS]
         speed_mode = (req.get("speed_mode") or "quality").strip().lower() if isinstance(req, dict) else "quality"
         if speed_mode not in {"fast", "quality"}:
             speed_mode = "fast"
@@ -1483,6 +1498,11 @@ def assets_generate_rpg_background():
                 "detail": detail,
             }), 400
         return jsonify({"ok": False, "msg": msg}), 500
+    finally:
+        try:
+            BG_GENERATE_LOCK.release()
+        except Exception:
+            pass
 
 
 @app.route("/assets/restore-reference-background", methods=["POST"])
