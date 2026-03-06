@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Star 的像素办公室</title>
+    <title>Q Branch - MI6 Operations Centre</title>
     <style>
         @font-face {
             font-family: 'ArkPixel';
@@ -13,7 +13,7 @@
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            background: #1a1a2e;
+            background: #0a0a0f;
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
@@ -60,8 +60,8 @@
             image-rendering: pixelated;
             /* 再兜底一次：即使外层高度变化，也不要拉伸变形 */
             object-fit: contain;
-            /* 边框改为直接贴合画布内部，避免“框比地图大” */
-            box-shadow: inset 0 0 0 4px #64477d;
+            /* 边框改为直接贴合画布内部，避免"框比地图大" */
+            box-shadow: inset 0 0 0 4px #c9a84c;
             position: relative;
             z-index: 10;
         }
@@ -70,7 +70,7 @@
             position: absolute;
             inset: 0;
             z-index: 5;
-            background: radial-gradient(ellipse at center, #2a2a45 0%, #1a1a2e 65%, #151522 100%);
+            background: radial-gradient(ellipse at center, #0d0d18 0%, #1a1a2e 65%, #151522 100%);
             overflow: hidden;
         }
         #game-skeleton::before {
@@ -102,7 +102,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: #1a1a2e;
+            background: #0a0a0f;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -643,7 +643,7 @@
             background: #4a4f5f;
             border-color: #e94560;
         }
-        /* Star 状态四按钮（不含装修）使用像素精灵皮肤 */
+        /* AGENT STATUS四按钮（不含装修）使用像素精灵皮肤 */
         #control-bar #btn-state-idle,
         #control-bar #btn-state-writing,
         #control-bar #btn-state-syncing,
@@ -789,7 +789,7 @@
             padding-right: 4px;
         }
         #guest-agent-list::-webkit-scrollbar { width: 6px; }
-        #guest-agent-list::-webkit-scrollbar-track { background: #1a1a2e; }
+        #guest-agent-list::-webkit-scrollbar-track { background: #0a0a0f; }
         #guest-agent-list::-webkit-scrollbar-thumb { background: #555; border-radius: 3px; }
         .guest-agent-item {
             display: flex;
@@ -935,7 +935,7 @@
             width: 6px;
         }
         #memo-content::-webkit-scrollbar-track {
-            background: #1a1a2e;
+            background: #0a0a0f;
         }
         #memo-content::-webkit-scrollbar-thumb {
             background: #444;
@@ -1133,58 +1133,58 @@
 <body>
     <!-- 加载遮罩 -->
     <div id="loading-overlay">
-        <div id="loading-text">Loading Star’s pixel office...</div>
+        <div id="loading-text">Establishing secure uplink to Q Branch...</div>
         <div id="loading-progress-container">
             <div id="loading-progress-bar"></div>
         </div>
     </div>
-    
+
     <div id="main-stage">
         <div id="game-container">
-            <div id="game-skeleton"><div class="hint">正在进入像素办公室…</div></div>
-            <div id="status-text">加载中...</div>
+            <div id="game-skeleton"><div class="hint">Connecting to MI6 Operations...</div></div>
+            <div id="status-text">Loading...</div>
         </div>
-    
+
     <!-- 底部面板容器 -->
     <div id="bottom-panels">
         <!-- Memo 面板 -->
         <div id="memo-panel">
-            <div id="memo-title">昨 日 小 记</div>
+            <div id="memo-title">MISSION BRIEFING</div>
             <div id="memo-date"></div>
             <div class="memo-decoration">─ ─ ─ ─ ─</div>
             <div id="memo-content">
-                <div id="memo-placeholder">加载中...</div>
+                <div id="memo-placeholder">Loading...</div>
             </div>
             <div class="memo-decoration">─ ─ ─ ─ ─</div>
         </div>
-        
+
         <!-- 状态控制栏 -->
         <div id="control-bar">
-            <div id="control-bar-title">Star 状态</div>
+            <div id="control-bar-title">AGENT STATUS</div>
             <div id="control-buttons">
-                <button id="btn-state-idle" onclick="setState('idle','待命')">待命</button>
-                <button id="btn-state-writing" onclick="setState('writing','工作中')">工作</button>
-                <button id="btn-state-syncing" onclick="setState('syncing','同步中')">同步</button>
-                <button id="btn-state-error" onclick="setState('error','报警中')">报警</button>
-                <button id="btn-open-drawer" onclick="toggleAssetDrawer()">装修房间</button>
+                <button id="btn-state-idle" onclick="setState('idle','Standby')">STANDBY</button>
+                <button id="btn-state-writing" onclick="setState('writing','On Mission')">MISSION</button>
+                <button id="btn-state-syncing" onclick="setState('syncing','Exfiltrating')">EXFIL</button>
+                <button id="btn-state-error" onclick="setState('error','Compromised')">ALERT</button>
+                <button id="btn-open-drawer" onclick="toggleAssetDrawer()">REFIT Q BRANCH</button>
             </div>
         </div>
 
         <!-- Guest Agent 名单面板（右下角） -->
         <div id="guest-agent-panel">
-            <div id="guest-agent-panel-title">访 客 列 表</div>
+            <div id="guest-agent-panel-title">FIELD AGENTS</div>
             <div id="guest-agent-list">
-                <div style="color:#9ca3af;font-size:12px;text-align:center;padding:20px 0;">正在加载访客...</div>
+                <div style="color:#9ca3af;font-size:12px;text-align:center;padding:20px 0;">Loading field agents...</div>
             </div>
             </div>
         </div>
     </div>
-    
+
     <div id="asset-highlight"></div>
     <div id="room-loading-overlay" aria-live="polite" aria-busy="true">
         <div class="room-loading-inner">
             <div id="room-loading-emoji">🦞</div>
-            <div id="room-loading-text">正在打包虾头……</div>
+            <div id="room-loading-text">Initializing Q Branch systems...</div>
         </div>
     </div>
 
@@ -1282,19 +1282,17 @@
         移动视野
     </button>
     <div id="lang-toggle-group" style="position:fixed; top:calc(env(safe-area-inset-top, 0px) + 52px); left:12px; z-index:1000002; display:flex; gap:2px; align-items:center;">
-        <button id="lang-btn-en" onclick="setUILanguage('en')" style="padding:8px 10px; font-family:ArkPixel,monospace; font-size:13px; cursor:pointer; border:2px solid #333; border-radius:5px; background:#333; color:#fff;">EN</button>
-        <button id="lang-btn-jp" onclick="setUILanguage('ja')" style="padding:8px 10px; font-family:ArkPixel,monospace; font-size:13px; cursor:pointer; border:2px solid #333; border-radius:5px; background:#333; color:#fff;">JP</button>
-        <button id="lang-btn-cn" onclick="setUILanguage('zh')" style="padding:8px 10px; font-family:ArkPixel,monospace; font-size:13px; cursor:pointer; border:2px solid #333; border-radius:5px; background:#333; color:#fff;">CN</button>
+        <!-- Language buttons hidden - English only (Bond edition) -->
     </div>
 
     <script src="/static/vendor/phaser-3.80.1.min.js?v={{VERSION_TIMESTAMP}}"></script>
     <script>
         // 简易中英文切换
-        let uiLang = localStorage.getItem('uiLang') || 'en';
+        let uiLang = 'en'; // Force English - Q Branch edition
         const I18N = {
             zh: {
-                controlTitle: 'Star 状态',
-                btnIdle: '待命', btnWork: '工作', btnSync: '同步', btnError: '报警', btnDecor: '装修房间',
+                controlTitle: 'AGENT STATUS',
+                btnIdle: 'STANDBY', btnWork: 'MISSION', btnSync: 'EXFIL', btnError: 'ALERT', btnDecor: 'REFIT Q BRANCH',
                 drawerTitle: '装修房间 · 资产侧边栏', drawerClose: '关闭',
                 authTitle: '请输入装修验证码', authPlaceholder: '输入验证码', authVerify: '验证', authDefaultPassHint: '默认密码：1234（可随时让我帮你改，建议改成强密码）',
                 drawerVisibilityTip: '可见性：点击条目右侧眼睛按钮切换该资产显示',
@@ -1302,14 +1300,14 @@
                 assetHide: '隐藏', assetShow: '显示',
                 resetToDefault: '重置为默认资产', restorePrevAsset: '用上一版',
                 btnMove: '📦 搬新家', btnHome: '🐚 回老家', btnHomeLast: '↩️ 回上一个家', btnHomeFavorite: '⭐ 收藏这个家', btnBroker: '🤝 找中介', btnDIY: '🪚 自己装', btnBrokerGo: '听中介的',
-                homeFavTitle: '🏠 收藏的家', homeFavEmpty: '还没有收藏，先点“⭐ 收藏这个家”', homeFavApply: '替换到当前地图', homeFavDelete: '删除', homeFavSaved: '✅ 已收藏当前地图', homeFavApplied: '✅ 已替换为收藏地图', homeFavDeleted: '🗑️ 已删除收藏',
+                homeFavTitle: '🏠 收藏的家', homeFavEmpty: '还没有收藏，先点"⭐ 收藏这个家"', homeFavApply: '替换到当前地图', homeFavDelete: '删除', homeFavSaved: '✅ 已收藏当前地图', homeFavApplied: '✅ 已替换为收藏地图', homeFavDeleted: '🗑️ 已删除收藏',
                 brokerHint: '你会给龙虾推荐什么样的房子',
                 brokerPromptPh: '例如：故宫主题、莫奈风格、地牢主题、兵马俑主题……',
                 brokerNeedPrompt: '请先输入中介方案描述',
-                brokerGenerating: '🏘️ 正在按中介方案生成底图，请稍候（约20-90秒）...',
-                brokerDone: '✅ 已按中介方案生成并替换底图，正在刷新房间...',
+                brokerGenerating: '🏘️ Generating new Q Branch layout, please wait (20-90s)...',
+                brokerDone: '✅ New layout generated, refreshing Q Branch...',
                 moveSuccess: '✅ 搬家成功！',
-                brokerMissingKey: '❌ 生图失败：缺少 GEMINI API Key，请在下方填写并保存后重试',
+                brokerMissingKey: '❌ Generation failed: Missing GEMINI API Key',
                 geminiPanelTitle: '🔐 API 设置（可折叠）', geminiHint: '可选：填写你的生图 API Key（留空不影响基础功能）', geminiApiDoc: '📘 如何申请 Google API Key', geminiInputPh: '粘贴 GEMINI_API_KEY（不会回显）', geminiSaveKey: '保存 Key', geminiMaskNoKey: '当前状态：未配置 Key', geminiMaskHasKey: '当前已配置：',
                 speedModeLabel: '生成模式', speedFast: '🍌2', speedQuality: '🍌Pro',
                 searchPlaceholder: '搜索资产名（如 desk / sofa / star）', loaded: '已加载', allAssets: '全部资产',
@@ -1317,12 +1315,12 @@
                 assetHintNotInScene: '当前场景未检测到此对象，仍可替换文件（刷新后生效）',
                 assetHintDefault: '通用素材：建议保持原图尺寸、透明通道与视觉重心一致，避免错位或失真',
                 showCoords: '显示坐标', hideCoords: '隐藏坐标', moveView: '移动视野', lockView: '锁定视野',
-                memoTitle: '昨 日 小 记', guestTitle: '访 客 列 表', officeTitle: '海辛小龙虾的办公室',
-                loadingOffice: '正在加载 Star 的像素办公室...'
+                memoTitle: 'MISSION BRIEFING', guestTitle: 'FIELD AGENTS', officeTitle: 'Q Branch - MI6 Operations Centre',
+                loadingOffice: 'Establishing secure uplink to Q Branch...'
             },
             en: {
-                controlTitle: 'Star Status',
-                btnIdle: 'Idle', btnWork: 'Work', btnSync: 'Sync', btnError: 'Alert', btnDecor: 'Decorate Room',
+                controlTitle: 'AGENT STATUS',
+                btnIdle: 'STANDBY', btnWork: 'MISSION', btnSync: 'EXFIL', btnError: 'ALERT', btnDecor: 'REFIT Q BRANCH',
                 drawerTitle: 'Decorate Room · Asset Sidebar', drawerClose: 'Close',
                 authTitle: 'Enter Decor Passcode', authPlaceholder: 'Enter passcode', authVerify: 'Verify', authDefaultPassHint: 'Default passcode: 1234 (ask me anytime to change it; stronger passcode recommended)',
                 drawerVisibilityTip: 'Visibility: use the eye button on each row to hide/show that asset',
@@ -1330,7 +1328,7 @@
                 assetHide: 'Hide', assetShow: 'Show',
                 resetToDefault: 'Reset to Default', restorePrevAsset: 'Use Previous',
                 btnMove: '📦 New Home', btnHome: '🐚 Go Home', btnHomeLast: '↩️ Last One', btnHomeFavorite: '⭐ Save This Home', btnBroker: '🤝 Broker', btnDIY: '🪚 DIY', btnBrokerGo: 'Follow Broker',
-                homeFavTitle: '🏠 Saved Homes', homeFavEmpty: 'No saved homes yet. Tap “⭐ Save This Home” first.', homeFavApply: 'Apply to Current Map', homeFavDelete: 'Delete', homeFavSaved: '✅ Current map saved', homeFavApplied: '✅ Applied saved home', homeFavDeleted: '🗑️ Saved home deleted',
+                homeFavTitle: '🏠 Saved Homes', homeFavEmpty: 'No saved homes yet. Tap "⭐ Save This Home" first.', homeFavApply: 'Apply to Current Map', homeFavDelete: 'Delete', homeFavSaved: '✅ Current map saved', homeFavApplied: '✅ Applied saved home', homeFavDeleted: '🗑️ Saved home deleted',
                 brokerHint: 'What kind of house would you recommend for Lobster?',
                 brokerPromptPh: 'e.g. Forbidden City theme, Monet style, dungeon theme, Terracotta Warriors theme...',
                 brokerNeedPrompt: 'Please enter broker style prompt first',
@@ -1345,12 +1343,12 @@
                 assetHintNotInScene: 'This object is not detected in current scene; you can still replace file (effective after refresh)',
                 assetHintDefault: 'Generic asset: keep source size, alpha channel, and visual anchor to avoid drift/distortion',
                 showCoords: 'Show Coords', hideCoords: 'Hide Coords', moveView: 'Pan View', lockView: 'Lock View',
-                memoTitle: 'YESTERDAY NOTES', guestTitle: 'VISITOR LIST', officeTitle: 'Haixin Lobster Office',
-                loadingOffice: 'Loading Star’s pixel office...'
+                memoTitle: 'MISSION BRIEFING', guestTitle: 'FIELD AGENTS', officeTitle: 'Q Branch - MI6 Operations Centre',
+                loadingOffice: 'Establishing secure uplink to Q Branch...'
             },
             ja: {
                 controlTitle: 'Star ステータス',
-                btnIdle: '待機', btnWork: '作業', btnSync: '同期', btnError: '警報', btnDecor: '部屋を編集',
+                btnIdle: 'STANDBY', btnWork: 'MISSION', btnSync: 'EXFIL', btnError: 'ALERT', btnDecor: 'REFIT Q BRANCH',
                 drawerTitle: '部屋編集・アセットサイドバー', drawerClose: '閉じる',
                 authTitle: '編集パスコードを入力', authPlaceholder: 'パスコード入力', authVerify: '認証', authDefaultPassHint: '初期パスコード：1234（いつでも変更を相談可。強固なパス推奨）',
                 drawerVisibilityTip: '表示切替：各行右側の目ボタンで資産を表示/非表示',
@@ -1373,8 +1371,8 @@
                 assetHintNotInScene: '現在のシーンでこのオブジェクトは未検出です。ファイル差し替えは可能（更新後に反映）',
                 assetHintDefault: '汎用素材：元サイズ・透過・視覚アンカーを維持し、ズレや崩れを防いでください',
                 showCoords: '座標表示', hideCoords: '座標非表示', moveView: '視点移動', lockView: '視点固定',
-                memoTitle: '昨日のメモ', guestTitle: '訪問者リスト', officeTitle: 'ハイシン・ロブスターのオフィス',
-                loadingOffice: 'Star のピクセルオフィスを読み込み中...'
+                memoTitle: 'MISSION BRIEFING', guestTitle: 'FIELD AGENTS', officeTitle: 'Q Branch - MI6 Operations Centre',
+                loadingOffice: 'Establishing secure uplink to Q Branch...'
             }
         };
 
@@ -1499,7 +1497,7 @@
 
         // 检测浏览器是否支持 WebP
         let supportsWebP = false;
-        
+
         // 方法 1: 使用 canvas 检测
         function checkWebPSupport() {
             return new Promise((resolve) => {
@@ -1511,7 +1509,7 @@
                 }
             });
         }
-        
+
         // 方法 2: 使用 image 检测（备用）
         function checkWebPSupportFallback() {
             return new Promise((resolve) => {
@@ -1549,20 +1547,20 @@
         async function loadMemo() {
             const memoDate = document.getElementById('memo-date');
             const memoContent = document.getElementById('memo-content');
-            
+
             try {
                 const response = await fetch('/yesterday-memo?t=' + Date.now(), { cache: 'no-store' });
                 const data = await response.json();
-                
+
                 if (data.success && data.memo) {
                     memoDate.textContent = data.date || '';
                     memoContent.innerHTML = data.memo.replace(/\n/g, '<br>');
                 } else {
-                    memoContent.innerHTML = '<div id="memo-placeholder">暂无昨日日记</div>';
+                    memoContent.innerHTML = '<div id="memo-placeholder">No mission briefing available.</div>';
                 }
             } catch (e) {
                 console.error('加载 memo 失败:', e);
-                memoContent.innerHTML = '<div id="memo-placeholder">加载失败</div>';
+                memoContent.innerHTML = '<div id="memo-placeholder">Loading failed</div>';
             }
         }
 
@@ -1602,42 +1600,42 @@
             }, 260);
         }
 
-        // 兜底：某些移动网络/CDN 抖动时，避免一直卡在“加载中”遮罩
+        // 兜底：某些移动网络/CDN 抖动时，避免一直卡在"加载中"遮罩
         setTimeout(() => {
             if (loadingOverlay && loadingOverlay.style.display !== 'none') {
                 hideLoadingOverlay();
             }
         }, 8000);
-        
+
         // 懒加载逻辑已取消（体验优先：装饰首屏直接出现）
 
         const STATES = {
-            idle: { name: '待命', area: 'breakroom' },
-            writing: { name: '整理文档', area: 'writing' },
-            researching: { name: '搜索信息', area: 'researching' },
-            executing: { name: '执行任务', area: 'writing' },
-            syncing: { name: '同步备份', area: 'writing' },
-            error: { name: '出错了', area: 'error' }
+            idle: { name: 'STANDBY', area: 'breakroom' },
+            writing: { name: 'ON MISSION', area: 'writing' },
+            researching: { name: 'INTELLIGENCE GATHERING', area: 'researching' },
+            executing: { name: 'EXECUTING OPERATION', area: 'writing' },
+            syncing: { name: 'EXFILTRATING DATA', area: 'writing' },
+            error: { name: 'COMPROMISED', area: 'error' }
         };
 
         const BUBBLE_TEXTS = {
             zh: {
-                idle: ['待命中：耳朵竖起来了','我在这儿，随时可以开工','先把桌面收拾干净再说','呼——给大脑放个风','今天也要优雅地高效','等待，是为了更准确的一击','咖啡还热，灵感也还在','我在后台给你加 Buff','状态：静心 / 充电','小猫说：慢一点也没关系'],
-                writing: ['进入专注模式：勿扰','先把关键路径跑通','我来把复杂变简单','把 bug 关进笼子里','写到一半，先保存','把每一步都做成可回滚','今天的进度，明天的底气','先收敛，再发散','让系统变得更可解释','稳住，我们能赢'],
-                researching: ['我在挖证据链','让我把信息熬成结论','找到了：关键在这里','先把变量控制住','我在查：它为什么会这样','把直觉写成验证','先定位，再优化','别急，先画因果图'],
-                executing: ['执行中：不要眨眼','把任务切成小块逐个击破','开始跑 pipeline','一键推进：走你','让结果自己说话','先做最小可行，再做最美版本'],
-                syncing: ['同步中：把今天锁进云里','备份不是仪式，是安全感','写入中…别断电','把变更交给时间戳','云端对齐：咔哒','同步完成前先别乱动','把未来的自己从灾难里救出来','多一份备份，少一份后悔'],
-                error: ['警报响了：先别慌','我闻到 bug 的味道了','先复现，再谈修复','把日志给我，我会说人话','错误不是敌人，是线索','把影响面圈起来','先止血，再手术','我在：马上定位根因','别怕，这种我见多了','报警中：让问题自己现形'],
+                idle: ['Shaken, not stirred.','Awaiting orders, M.','The name is Q. Just Q.','Martini break. Back shortly.','Keeping the Aston Martin warm.','On standby at MI6.','Monitoring all channels.','License to chill.','Ready for deployment.','Goldeneye satellite: nominal.'],
+                writing: ['The mission is underway.','Deploying countermeasures.','Building your gadgets, 007.','In the field. Do not disturb.','Encrypted channel active.','Operating behind enemy lines.','This will self-destruct when complete.','Q Branch working overtime.','For your eyes only.','Another day, another dossier.'],
+                researching: ['Scanning MI6 intelligence database.','Cross-referencing with GCHQ.','The intel is coming together.','Running background checks.','Tracing the money trail.','Satellite imagery incoming.','Hacking into their mainframe.','Pulling files from the archive.'],
+                executing: ['Operation is a go. Stand clear.','Deploying the package now.','Target acquired. Executing.','One shot. Make it count.','The payload is away.','Running dark. Radio silence.'],
+                syncing: ['Transmitting to MI6 headquarters.','Uploading to secure servers.','Encrypting and exfiltrating.','Dead drop in progress.','Beaming data to the satellite.','Secure channel established.','Files en route to M.','Cover tracks. Leave no trace.'],
+                error: ['We have a situation.','Cover blown. Assessing damage.','SPECTRE interference detected.','Abort? Negative. Adapting.','Hostile code detected.','Countermeasures deployed.','Q Branch on it. Stand by.','Threat level: elevated.','Not to worry. I have a plan.','Enemy at the gates.'],
                 cat: ['喵~','咕噜咕噜…','尾巴摇一摇','晒太阳最开心','有人来看我啦','我是这个办公室的吉祥物','伸个懒腰','今天的罐罐准备好了吗','呼噜呼噜','这个位置视野最好']
             },
             en: {
-                idle: ['On standby: ears up.','I’m here, ready to roll.','Let’s tidy the desk first.','Taking a quick brain breeze.','Efficient and elegant, as always.','Waiting for a more precise strike.','Coffee is warm, ideas too.','Giving you a quiet backstage buff.','Status: calm / charging.','Cat says: no rush, we’re good.'],
-                writing: ['Focus mode on: do not disturb.','Let’s clear the critical path first.','I’ll make the complex simple.','Putting bugs in a cage.','Save first, then continue.','Every step should be rollback-safe.','Today’s progress is tomorrow’s confidence.','Converge first, then diverge.','Making the system more explainable.','Steady—this is winnable.'],
-                researching: ['Digging the evidence chain.','Let me boil info into conclusions.','Found it: key clue here.','Control variables first.','Checking why this happens.','Turn intuition into verification.','Locate first, optimize next.','No rush—draw the causality map first.'],
-                executing: ['Executing—don’t blink.','Split tasks, conquer one by one.','Pipeline is running.','One-click push: go go.','Let the results speak.','Build MVP first, then craft beauty.'],
-                syncing: ['Syncing: lock today into the cloud.','Backup is safety, not ceremony.','Writing… don’t cut power.','Handing changes to timestamps.','Cloud alignment: click.','Don’t shake it before sync finishes.','Saving future-us from disasters.','One more backup, one less regret.'],
-                error: ['Alarm on—stay calm.','I can smell a bug.','Reproduce first, then fix.','Give me logs; I’ll translate.','Errors are clues, not enemies.','Circle the impact area first.','Stop the bleeding, then surgery.','On it: tracing root cause now.','Don’t worry, seen this many times.','Alert mode: make the issue reveal itself.'],
-                cat: ['Meow~','Purr purr…','Tail wiggle activated.','Sunbathing is the best.','Someone came to see me!','I’m the office mascot.','Big stretch~','Is today’s snack ready yet?','Rrrrr purr…','Best view spot secured.']
+                idle: ['On standby: ears up.','I'm here, ready to roll.','Let's tidy the desk first.','Taking a quick brain breeze.','Efficient and elegant, as always.','Waiting for a more precise strike.','Coffee is warm, ideas too.','Giving you a quiet backstage buff.','Status: calm / charging.','Cat says: no rush, we're good.'],
+                writing: ['Focus mode on: do not disturb.','Let's clear the critical path first.','I'll make the complex simple.','Putting bugs in a cage.','Save first, then continue.','Every step should be rollback-safe.','Today's progress is tomorrow's confidence.','Converge first, then diverge.','Making the system more explainable.','Steady-this is winnable.'],
+                researching: ['Scanning MI6 intelligence database.','Cross-referencing with GCHQ.','The intel is coming together.','Running background checks.','Tracing the money trail.','Satellite imagery incoming.','Hacking into their mainframe.','Pulling files from the archive.'],
+                executing: ['Operation is a go. Stand clear.','Deploying the package now.','Target acquired. Executing.','One shot. Make it count.','The payload is away.','Running dark. Radio silence.'],
+                syncing: ['Transmitting to MI6 headquarters.','Uploading to secure servers.','Encrypting and exfiltrating.','Dead drop in progress.','Beaming data to the satellite.','Secure channel established.','Files en route to M.','Cover tracks. Leave no trace.'],
+                error: ['We have a situation.','Cover blown. Assessing damage.','SPECTRE interference detected.','Abort? Negative. Adapting.','Hostile code detected.','Countermeasures deployed.','Q Branch on it. Stand by.','Threat level: elevated.','Not to worry. I have a plan.','Enemy at the gates.'],
+                cat: ['Meow~','Purr purr…','Tail wiggle activated.','Sunbathing is the best.','Someone came to see me!','I'm the office mascot.','Big stretch~','Is today's snack ready yet?','Rrrrr purr…','Best view spot secured.']
             },
             ja: {
                 idle: ['待機中：耳はピン。','ここにいるよ、いつでも開始OK。','まず机を整えよう。','ふー、頭に風を通す。','今日も上品に高効率で。','待つのは、より正確な一撃のため。','コーヒーも発想もまだ温かい。','裏側でそっとバフ中。','状態：静心 / 充電。','猫より：ゆっくりでも大丈夫。'],
@@ -1777,11 +1775,11 @@
                     bindDrawerFileMeta();
                 } else {
                     assetDrawerAuthed = false;
-                    if (msg) msg.textContent = '❌ 验证码错误';
+                    if (msg) msg.textContent = '❌ Access code incorrect';
                 }
             } catch (e) {
                 assetDrawerAuthed = false;
-                if (msg) msg.textContent = `❌ 验证失败：${e}`;
+                if (msg) msg.textContent = `❌ Verification failed：${e}`;
             }
         }
 
@@ -1798,7 +1796,7 @@
 
         function getAssetDisplayName(path) {
             const stem = toAssetStem(path);
-            const lang = (uiLang || 'zh');
+            const lang = (uiLang || 'en');
             const nameMap = {
                 zh: {
                     'star-idle-v5': '主角·待命状态',
@@ -1981,7 +1979,7 @@
 
         function getAssetHelpText(path) {
             const stem = toAssetStem(path);
-            const lang = (uiLang || 'zh');
+            const lang = (uiLang || 'en');
             const map = ASSET_HELP_TEXT_MAP[lang] || ASSET_HELP_TEXT_MAP.zh;
             return map[stem] || t('assetHintDefault');
         }
@@ -2286,7 +2284,7 @@
             // 先看命名是否属于精灵表
             const inferred = inferSpritesheetFrameMetaByPath(item?.path || '');
             if (!inferred) return null;
-            // 仅返回“是精灵表”的信号，单帧尺寸后续自动推断
+            // 仅返回"是精灵表"的信号，单帧尺寸后续自动推断
             return { w: null, h: null, isSheet: true };
         }
 
@@ -2446,7 +2444,7 @@
             clearAssetThumbTimers();
 
             if (rows.length === 0) {
-                list.innerHTML = '<div class="asset-sub" style="padding:8px">暂无资产（可点“刷新”重试）</div>';
+                list.innerHTML = '<div class="asset-sub" style="padding:8px">暂无资产（可点"刷新"重试）</div>';
                 return;
             }
 
@@ -2510,7 +2508,7 @@
                 }
             } catch (e) {
                 console.error('加载资产列表失败', e);
-                if (out) out.textContent = '❌ 资产加载失败，请点“刷新”重试';
+                if (out) out.textContent = '❌ 资产Loading failed，请点"刷新"重试';
             }
         }
 
@@ -2764,23 +2762,23 @@ function toggleBrokerPanel() {
                     '正在给钳子装上远行 Buff……',
                     '正在匹配下一段创作气候……',
                     '正在把时差调成冒险模式……',
-                    '正在接收陌生街区的 Wi‑Fi 心跳……',
+                    '正在接收陌生街区的 Wi-Fi 心跳……',
                     '正在试播下一站的海风 BGM……',
-                    '正在加载“也许会爱上”的新房间……',
+                    '正在加载"也许会爱上"的新房间……',
                     '正在为未知邻居准备自我介绍……',
                     '正在解锁下一片数字海域……',
                     '正在把好奇心调到满格……',
                     '正在等待旅程投递下一张门牌号……'
                 ],
                 en: [
-                    'Packing today’s luggage of inspiration…',
+                    'Packing today's luggage of inspiration…',
                     'Drawing the digital coordinates for the next stop…',
                     'Checking the destination of this drift…',
                     'Folding the office into portable mode…',
                     'Installing a travel buff on the claws…',
                     'Matching the creative climate for the next chapter…',
                     'Switching the time zone to adventure mode…',
-                    'Receiving Wi‑Fi heartbeats from an unfamiliar block…',
+                    'Receiving Wi-Fi heartbeats from an unfamiliar block…',
                     'Previewing the sea-breeze BGM of the next stop…',
                     'Loading a new room you might just fall in love with…',
                     'Preparing an intro for unknown neighbors…',
@@ -2796,7 +2794,7 @@ function toggleBrokerPanel() {
                     'ハサミに遠征 Buff を装着しています……',
                     '次の創作区間の気候をマッチングしています……',
                     '時差を冒険モードに切り替えています……',
-                    '見知らぬ街区の Wi‑Fi ハートビートを受信しています……',
+                    '見知らぬ街区の Wi-Fi ハートビートを受信しています……',
                     '次の目的地の潮風 BGM を試聴しています……',
                     '「好きになるかもしれない」新しい部屋を読み込んでいます……',
                     '未知のご近所さん向けに自己紹介を準備しています……',
@@ -3129,7 +3127,7 @@ function toggleBrokerPanel() {
                     }
                 } catch (e) {
                     const out = document.getElementById('asset-move-result') || document.getElementById('asset-upload-result');
-                    if (out) out.textContent = `❌ 收藏列表加载失败：${e.message || e}`;
+                    if (out) out.textContent = `❌ 收藏列表Loading failed：${e.message || e}`;
                 }
             }
 
@@ -3548,7 +3546,7 @@ function toggleBrokerPanel() {
                     let sprite;
                     const isDemoNika = DEMO_MODE && (agent.agentId === 'demo_nika' || agent.name === '尼卡');
                     const isDemoMercury = DEMO_MODE && (agent.agentId === 'demo_mercury' || agent.name === '水星');
-                    
+
                     if (isDemoNika || isDemoMercury) {
                         // 统一使用动态像素角色，避免依赖已删除的 demo 静态图
                         const animKey = 'guest_anim_1';
@@ -3679,7 +3677,7 @@ function toggleBrokerPanel() {
             const id = ids[Math.floor(Math.random() * ids.length)];
             const g = guestSprites[id];
 
-            // demo 气泡：优先展示与状态对应的内容，便于验证“状态→区域→气泡”链路
+            // demo 气泡：优先展示与状态对应的内容，便于验证"状态→区域→气泡"链路
             const demoVisitor = (DEMO_MODE && window.__demoVisitors)
                 ? (window.__demoVisitors.find(v => v.agentId === id) || window.__demoVisitors.find(v => v.name === (g.nameText && g.nameText.text)))
                 : null;
@@ -3702,7 +3700,7 @@ function toggleBrokerPanel() {
             }
 
             const bx = g.sprite.x;
-            // 气泡位置：demo 维持原逻辑；真实访客放在“名字上方”，避免压角色也避免压名字
+            // 气泡位置：demo 维持原逻辑；真实访客放在"名字上方"，避免压角色也避免压名字
             const isDemoGuest = (demoVisitor && demoVisitor.isDemo) || (id === 'demo_nika' || id === 'demo_mercury');
             const nameH = (g.nameText && g.nameText.height) ? g.nameText.height : 16;
             const by = isDemoGuest ? (g.sprite.y - 90) : ((g.nameText ? g.nameText.y : (g.sprite.y - 150)) - (nameH / 2) - 22);
@@ -3869,7 +3867,7 @@ function toggleBrokerPanel() {
                                     const lang = uiLang;
                                     const welcomeTexts = {
                                         zh: [`欢迎 ${newAgent.name} 来到办公室～`,`Hi ${newAgent.name}，一起开工吧`,`${newAgent.name} 已加入，欢迎！`],
-                                        en: [`Welcome ${newAgent.name} to the office!`,`Hi ${newAgent.name}, let’s build something.`,`${newAgent.name} just joined — welcome!`],
+                                        en: [`Welcome ${newAgent.name} to the office!`,`Hi ${newAgent.name}, let's build something.`,`${newAgent.name} just joined - welcome!`],
                                         ja: [`${newAgent.name} さん、オフィスへようこそ！`,`Hi ${newAgent.name}、一緒に進めよう。`,`${newAgent.name} さんが参加しました、歓迎！`]
                                     };
                                     const langPack = BUBBLE_TEXTS[lang] || BUBBLE_TEXTS.zh;
@@ -3959,16 +3957,16 @@ function toggleBrokerPanel() {
             loadingProgressBar = document.getElementById('loading-progress-bar');
             loadingText = document.getElementById('loading-text');
             loadingProgressContainer = document.getElementById('loading-progress-container');
-            
+
             // 设置资源总数（全部首屏加载：装饰也第一时间出现）
             totalAssets = 15;
             loadedAssets = 0;
-            
+
             // 加载进度监听
             this.load.on('filecomplete', () => {
                 updateLoadingProgress();
             });
-            
+
             this.load.on('complete', () => {
                 hideLoadingOverlay();
             });
@@ -4008,7 +4006,7 @@ function toggleBrokerPanel() {
             this.load.spritesheet('sync_anim', '/static/sync-animation-v3-grid.webp?v={{VERSION_TIMESTAMP}}', { frameWidth: 256, frameHeight: 256 });
 
             // Memo background image
-            // memo 底图固定走 png，避免某些端 webp 透明通道异常导致“底图丢失”
+            // memo 底图固定走 png，避免某些端 webp 透明通道异常导致"底图丢失"
             this.load.image('memo_bg', '/static/memo-bg.webp?v={{VERSION_TIMESTAMP}}');
             // Desk v2 (webp only)
             this.load.image('desk_v2', '/static/desk-v3.webp?v={{VERSION_TIMESTAMP}}');
@@ -4079,7 +4077,7 @@ function toggleBrokerPanel() {
             sofa.anims.stop();
             sofa.setTexture('sofa_idle');
 
-            // 加像素风小牌匾：海辛小龙虾的办公室
+            // 加像素风小牌匾：Q Branch - MI6 Operations Centre
             const plaqueX = config.width / 2;
             const plaqueY = config.height - 36;
             const plaqueBg = game.add.rectangle(plaqueX, plaqueY, 420, 44, 0x5d4037);
@@ -4107,7 +4105,7 @@ function toggleBrokerPanel() {
             // Expose to global for click handler
             window.plantSprite = plant;
             window.plantFrameCount = plantFrameCount;
-            
+
             plant.on('pointerdown', () => {
                 const next = Math.floor(Math.random() * window.plantFrameCount);
                 window.plantSprite.setFrame(next);
@@ -4120,7 +4118,7 @@ function toggleBrokerPanel() {
             plant2.setInteractive({ useHandCursor: true });
             // Expose to global for click handler
             window.plantSprite2 = plant2;
-            
+
             plant2.on('pointerdown', () => {
                 const next = Math.floor(Math.random() * window.plantFrameCount);
                 window.plantSprite2.setFrame(next);
@@ -4133,7 +4131,7 @@ function toggleBrokerPanel() {
             plant3.setInteractive({ useHandCursor: true });
             // Expose to global for click handler
             window.plantSprite3 = plant3;
-            
+
             plant3.on('pointerdown', () => {
                 const next = Math.floor(Math.random() * window.plantFrameCount);
                 window.plantSprite3.setFrame(next);
@@ -4148,7 +4146,7 @@ function toggleBrokerPanel() {
             // Expose to global for click handler
             window.posterSprite = poster;
             window.posterFrameCount = postersFrameCount;
-            
+
             poster.on('pointerdown', () => {
                 const next = Math.floor(Math.random() * window.posterFrameCount);
                 window.posterSprite.setFrame(next);
@@ -4291,7 +4289,7 @@ function toggleBrokerPanel() {
                 coordsToggle.style.background = showCoords ? '#e94560' : '#333';
             });
 
-            // 允许手机端“拖动/滑动”来移动视野（本质：移动 Phaser Camera）
+            // 允许手机端"拖动/滑动"来移动视野（本质：移动 Phaser Camera）
             // iPhone 等触屏设备默认开启；桌面端默认关闭（可手动开）。
             const panToggle = document.getElementById('pan-toggle');
             const isTouchDevice = IS_TOUCH_DEVICE;
@@ -4316,7 +4314,7 @@ function toggleBrokerPanel() {
                 camera.scrollY = clamp(camera.scrollY, 0, maxScrollY());
             }
 
-            // 手机上：锁定“办公室画布高度 = 2/3 区域高度”，
+            // 手机上：锁定"办公室画布高度 = 2/3 区域高度"，
             // 让世界坐标在竖向恰好看满（不需要上下拖），只保留横向拖动浏览左右。
             // 记录初始是否已手动平移（避免 resize 时把用户拖好的位置重置）
             let hasManuallyPanned = false;
@@ -4367,7 +4365,7 @@ function toggleBrokerPanel() {
                 }
                 game.input.setDefaultCursor(on ? 'grab' : 'default');
                 if (isTouchDevice && statusText) {
-                    const info = on ? '视野拖动已开启（可左右拖动画布）' : '视野拖动已关闭（点击左上角“移动视野”可开启）';
+                    const info = on ? '视野拖动已开启（可左右拖动画布）' : '视野拖动已关闭（点击左上角"移动视野"可开启）';
                     statusText.textContent = `状态：[${(STATES[currentState] && STATES[currentState].name) || '待命'}] ${info}`;
                 }
             }
@@ -4376,7 +4374,7 @@ function toggleBrokerPanel() {
                 panToggle.addEventListener('click', () => setPanEnabled(!panEnabled));
             }
 
-            // 手机端默认关闭拖动画面：由左上角“移动视野”开关显式开启
+            // 手机端默认关闭拖动画面：由左上角"移动视野"开关显式开启
             if (isTouchDevice) {
                 setPanEnabled(false);
             }
@@ -4388,7 +4386,7 @@ function toggleBrokerPanel() {
             const canvasEl = game.canvas;
             let touchPan = null; // {x,y,sx,sy,lock:'x'|'y'|null}
             if (canvasEl) {
-                // 手机端允许页面自然滚动，避免“不能滑动”
+                // 手机端允许页面自然滚动，避免"不能滑动"
                 canvasEl.style.touchAction = 'auto';
 
                 canvasEl.addEventListener('touchstart', (e) => {
@@ -4441,7 +4439,7 @@ function toggleBrokerPanel() {
                 const dx = pointer.x - panStart.x;
                 const dy = pointer.y - panStart.y;
 
-                // 手机端优先“横向拖动看办公室”，纵向手势留给页面滚动看下方面板。
+                // 手机端优先"横向拖动看办公室"，纵向手势留给页面滚动看下方面板。
                 if (isTouchDevice && Math.abs(dy) > Math.abs(dx)) {
                     return;
                 }
